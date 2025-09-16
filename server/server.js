@@ -8,7 +8,6 @@ const Contact = require("./models/Contact");
 const Project = require("./models/Project");
 const Experience = require("./models/Experience");
 const Achievement = require("./models/Achievement");
-const Skill = require("./models/Skill"); // Skill model
 
 dotenv.config();
 const app = express();
