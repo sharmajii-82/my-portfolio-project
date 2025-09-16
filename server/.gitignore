@@ -1,5 +1,8 @@
-# Node modules
-node_modules/
+
+
+# server/.gitignore
+node_modules
+
 
 # Logs
 logs
