@@ -1,3 +1,4 @@
+// server/index.js
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -12,11 +13,16 @@ const Achievement = require("./models/Achievement");
 dotenv.config();
 const app = express();
 
-// Middleware
-app.use(cors());
+// ---------------------- MIDDLEWARE ----------------------
 app.use(express.json());
 
-// MongoDB Connection
+// Allow CORS for your frontend
+app.use(cors({
+  origin: process.env.FRONTEND_URL, // set in Render: your Vercel URL
+  credentials: true
+}));
+
+// ---------------------- DATABASE CONNECTION ----------------------
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -24,7 +30,7 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => console.log("MongoDB connected"))
 .catch(err => console.error("MongoDB connection error:", err));
 
-// Root Route
+// ---------------------- ROOT ROUTE ----------------------
 app.get("/", (req, res) => res.send("Portfolio Backend is running"));
 
 // ---------------------- CONTACT ROUTE ----------------------
@@ -131,7 +137,6 @@ app.post("/api/achievements", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
 
 // ---------------------- SERVER ----------------------
 const PORT = process.env.PORT || 5000;
