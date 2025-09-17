@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 export default function Projects() {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/projects");
+        const res = await axios.get(`${BASE_URL}/api/projects`);
         setProjects(res.data);
       } catch (err) {
         console.error("Failed to fetch projects:", err);
@@ -18,11 +20,7 @@ export default function Projects() {
   }, []);
 
   return (
-    <section
-      id="projects"
-      className="py-16 px-4 bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden"
-    >
-      {/* Floating mist orbs */}
+    <section id="projects" className="py-16 px-4 bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
       {[...Array(8)].map((_, i) => (
         <motion.div
           key={i}
@@ -46,7 +44,6 @@ export default function Projects() {
         />
       ))}
 
-      {/* Section Title */}
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -56,7 +53,6 @@ export default function Projects() {
         🚀 Projects
       </motion.h2>
 
-      {/* Project Cards */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
         {projects.length > 0 ? (
           projects.map((project, i) => (
@@ -68,12 +64,9 @@ export default function Projects() {
               whileHover={{ scale: 1.03 }}
               className="relative p-4 bg-white/5 backdrop-blur-md rounded-lg border border-white/10 shadow-sm hover:shadow-purple-500/20 transition-transform duration-300 group"
             >
-              {/* Ghost glow */}
               <motion.div
                 className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-500/10 to-indigo-500/10 blur-xl -z-10 opacity-0 group-hover:opacity-100 transition"
               />
-
-              {/* Project Image */}
               {project.image && (
                 <img
                   src={project.image}
@@ -81,13 +74,8 @@ export default function Projects() {
                   className="w-full h-32 object-cover rounded-md mb-2"
                 />
               )}
-
-              <h3 className="font-semibold text-md mb-1 text-indigo-300">
-                {project.name}
-              </h3>
-              <p className="mb-1 text-gray-300 text-xs line-clamp-3">
-                {project.description}
-              </p>
+              <h3 className="font-semibold text-md mb-1 text-indigo-300">{project.name}</h3>
+              <p className="mb-1 text-gray-300 text-xs line-clamp-3">{project.description}</p>
               <p className="text-[10px] mb-2 italic text-purple-400">{project.tech}</p>
               <a
                 href={project.link}
