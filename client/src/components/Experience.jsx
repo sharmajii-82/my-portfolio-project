@@ -1,7 +1,8 @@
-// Experience.jsx
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
+
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 export default function Experience() {
   const [experiences, setExperiences] = useState([]);
@@ -9,7 +10,7 @@ export default function Experience() {
   useEffect(() => {
     const fetchExperiences = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/experience");
+        const res = await axios.get(`${BASE_URL}/api/experience`);
         setExperiences(res.data);
       } catch (err) {
         console.error("Failed to fetch experiences:", err);
@@ -19,11 +20,7 @@ export default function Experience() {
   }, []);
 
   return (
-    <section
-      id="experience"
-      className="py-16 px-4 bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden"
-    >
-      {/* Floating misty orbs */}
+    <section id="experience" className="py-16 px-4 bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
       {[...Array(8)].map((_, i) => (
         <motion.div
           key={i}
@@ -51,8 +48,7 @@ export default function Experience() {
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-3xl md:text-4xl font-extrabold text-center mb-12 
-        text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-gray-400 to-purple-300"
+        className="text-3xl md:text-4xl font-extrabold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-gray-400 to-purple-300"
       >
         👻 Experience
       </motion.h2>
@@ -65,30 +61,17 @@ export default function Experience() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="relative p-6 bg-gray-800/60 backdrop-blur-lg 
-              border border-gray-700 rounded-xl shadow-lg 
-              hover:shadow-indigo-500/30 transition duration-300 hover:scale-105"
+              className="relative p-6 bg-gray-800/60 backdrop-blur-lg border border-gray-700 rounded-xl shadow-lg hover:shadow-indigo-500/30 transition duration-300 hover:scale-105"
             >
-              <h3 className="text-lg font-semibold text-indigo-300 mb-2">
-                {exp.role}
-              </h3>
-              <p className="text-sm font-medium text-purple-400">
-                {exp.company}
-              </p>
-              <p className="text-xs italic mb-3 text-gray-400">
-                {exp.duration}
-              </p>
-              <p className="text-sm text-gray-300 line-clamp-3">
-                {exp.description}
-              </p>
-
+              <h3 className="text-lg font-semibold text-indigo-300 mb-2">{exp.role}</h3>
+              <p className="text-sm font-medium text-purple-400">{exp.company}</p>
+              <p className="text-xs italic mb-3 text-gray-400">{exp.duration}</p>
+              <p className="text-sm text-gray-300 line-clamp-3">{exp.description}</p>
               <span className="absolute top-4 right-4 w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
             </motion.div>
           ))
         ) : (
-          <p className="text-center text-gray-400 text-sm col-span-full">
-            No experiences found.
-          </p>
+          <p className="text-center text-gray-400 text-sm col-span-full">No experiences found.</p>
         )}
       </div>
     </section>
