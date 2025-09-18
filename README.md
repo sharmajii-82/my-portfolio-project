@@ -30,8 +30,9 @@ Welcome to my personal developer portfolio! This project showcases my journey as
 
 ## Screenshots 📸
 
-![Home Page]([screenshots/home.png](https://drive.google.com/file/d/1TX-r1deAkGzBKMKOD23yAS9owy-40eNh/view?usp=sharing))  
-![Projects Section]([screenshots/projects.png](https://drive.google.com/file/d/1OVlDUldobmd-bhskQNMmPtsfT122kwac/view?usp=sharing))  
-![Contact Form]([screenshots/contact.png](https://drive.google.com/file/d/1LMUr8EV4Rt4ZUuuLfyYhNO2jW5WvVSym/view?usp=sharing))  
+![Home Page](https://drive.google.com/uc?export=view&id=1TX-r1deAkGzBKMKOD23yAS9owy-40eNh)  
+![Projects Section](https://drive.google.com/uc?export=view&id=1OVlDUldobmd-bhskQNMmPtsfT122kwac)  
+![Contact Form](https://drive.google.com/uc?export=view&id=1LMUr8EV4Rt4ZUuuLfyYhNO2jW5WvVSym)
+ 
 
 
